@@ -1,0 +1,56 @@
+* Introduction
+  This repo contains a port of Greg Ercolano's [[http://seriss.com/people/erco/fltk/#Altimeter][altimeter]] written using [[http://fltk.org][FLTK]] to a [[https://github.com/deech/fltkhs-altimeter/blob/master/src/fltkhs-altimeter-demo.hs][Haskell]] version that
+  uses the [[http://hackage.haskell.org/package/fltkhs][FLTKHS]] bindings. Here it is in action:
+
+  [[file:altimeter-recording.gif]]
+
+  This was posted to [[https://groups.google.com/d/msg/fltkgeneral/Gz5zgN2u028/KLEfVSXZCwAJ][fltk-dev mailing list]] as a demonstration of a
+  "realistic" widget and I thought it was pretty neat so I ported it to Haskell.
+* Installation
+  First and foremost you will need to have `stack` installed. This demo does not
+  exist on Hackage and meant to be installed from this repo using `stack`.
+  Please follow the [[https://docs.haskellstack.org/en/stable/README/][instructions]] on the project page to install it.
+
+  Then clone this repo and `cd` into it:
+  #+BEGIN_EXAMPLE
+  > git clone http://github.com/deech/fltkhs-altimeter
+  > cd fltkhs-altimeter
+  #+END_EXAMPLE
+
+  Test that you have [[http://fltk.org][FLTK]] installed on your system:
+  #+BEGIN_EXAMPLE
+  > fltk-config
+  1.3.3
+  #+END_EXAMPLE
+
+  If you don't please follow the installation instructions in the FLTKHS [[http://github.com/deech/fltkhs][README]].
+  NOTE: the README includes instructions up to installing a `fltkhs-hello-world`
+  executable. All that is needed to run this demo is FLTK itself. The rest is
+  installed by `stack` below.
+
+  At the root of this repo run:
+  #+BEGIN_EXAMPLE
+  > stack build
+  #+END_EXAMPLE
+  NOTE: This could take 6-8 mins as FLTKHS takes a while to compile.
+
+  And finally *from the root of this repo* run:
+  #+BEGIN_EXAMPLE
+  > stack exec fltkhs-altimeter
+  #+END_EXAMPLE
+
+* Motivation
+  This isn't meant to be a practical widget as much a demonstration of the
+  flexibility of both [[fltk.org][FLTK]] and [[http://hackage.haskell.org/package/fltkhs][the bindings]]. FLTK because this widget is built
+  by compositing PNG images and uses only the drawing routines provided by FLTK
+  without any OpenGL, and the bindings because it shows how to "inherit" from an
+  FLTK widget and render it using a custom drawing routine in pure Haskell. In
+  essence we've created a new widget by overriding the `draw` function of the
+  C++ `Fl_Widget` class all in Haskell which I think is pretty cool.
+
+  This port is also meant to show-off how easy it is to create a pure Haskell
+  version of a C++ widget found in the wild. By design, the API resembles the
+  underlying FLTK API closely enough that the port was mostly mechanical. See,
+  for instance, how closely the [[http://seriss.com/people/erco/fltk/#Altimeter][C++ 'draw' routine]] matches the [[https://github.com/deech/fltkhs-altimeter/blob/master/src/fltkhs-altimeter-demo.hs#L63][Haskell one]].
+  Right down to the comments the structure of the original C++ code is preserved
+  so that reader can learn the FLTKHS API by comparing.
