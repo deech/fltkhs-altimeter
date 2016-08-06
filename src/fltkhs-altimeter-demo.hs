@@ -24,7 +24,7 @@ data AltimeterState = AltimeterState
 --
 drawPointer :: Int -> Int -> Int -> Double -> IO ()
 drawPointer xc yc radius f =
-  let ang = pi - (f * (pi * 2))
+  let ang = pi + (f * (pi * 2))
       xa = sin ang
       ya = cos ang
       x1 = truncate (fromIntegral xc + xa * fromIntegral radius * 0.40)
