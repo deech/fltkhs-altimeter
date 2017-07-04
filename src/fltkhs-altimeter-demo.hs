@@ -1,3 +1,4 @@
+{-# LANGUAGE OverloadedStrings #-}
 module Main where
 import qualified Graphics.UI.FLTK.LowLevel.FL as FL
 import Graphics.UI.FLTK.LowLevel.Fl_Types
@@ -6,6 +7,7 @@ import Graphics.UI.FLTK.LowLevel.Fl_Enumerations
 import Data.Either
 import Data.IORef
 import System.Directory
+import Data.Text as T
 
 data AltimeterState = AltimeterState
   {
@@ -115,8 +117,8 @@ altimeterNew bounds = do
           Right i -> return i
           Left _ -> do
             d <- getCurrentDirectory
-            error ("Could not find image: " ++ path ++ " in current directory: " ++ d ++
-                   "\nPlease run the executable within a directory containing " ++ path ++ ".")
+            error ("Could not find image: " ++ (T.unpack path) ++ " in current directory: " ++ d ++
+                     "\nPlease run the executable within a directory containing " ++ (T.unpack path) ++ ".")
   _drum000 <- pngImageCreate "alt-drumtape.png"
   _drum10k <- pngImageCreate "alt-drumtape-10k.png"
   _dial <- pngImageCreate "alt-dial.png"

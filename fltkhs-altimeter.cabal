@@ -23,10 +23,10 @@ Flag FastCompile
 Executable fltkhs-altimeter
   Main-Is: fltkhs-altimeter-demo.hs
   Hs-Source-Dirs: src/
-  Build-Depends:
-    base == 4.*,
-                fltkhs >= 0.4.0.9,
-                       directory
+  Build-Depends: base == 4.*,
+                 fltkhs >= 0.4.0.9,
+                 directory,
+                 text >= 1.2.2.0
   default-language: Haskell2010
   ghc-Options: -debug -dcore-lint
   if impl(ghc >= 7.10) && flag(FastCompile)
