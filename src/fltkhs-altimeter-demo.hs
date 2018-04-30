@@ -42,23 +42,23 @@ drawPointer xc yc radius f =
   in
     do
      -- Draw black part of needle
-     flcLineStyle SolidLineStyle (Just 2) Nothing
+     flcLineStyle (LineDrawStyle (Just LineStyleSolid) Nothing Nothing) (Just (Width 2)) Nothing
      flcSetColor blackColor
      flcLine (Position (X xc) (Y yc)) (Position (X x1) (Y y1))
       -- Draw white part of needle
-     flcLineStyle SolidLineStyle (Just 3) Nothing
+     flcLineStyle (LineDrawStyle (Just LineStyleSolid) Nothing Nothing) (Just (Width 3)) Nothing
      flcSetColor (Color 0xdbd6c700)
      flcLine (Position (X x1) (Y y1)) (Position (X x2) (Y y2))
 
-     flcLineStyle SolidLineStyle (Just 8) Nothing
+     flcLineStyle (LineDrawStyle (Just LineStyleSolid) Nothing Nothing) (Just (Width 8)) Nothing
      flcSetColor (Color 0xdbd6c700)
      flcLine (Position (X x2) (Y y2)) (Position (X x3) (Y y3))
 
-     flcLineStyle SolidLineStyle (Just 4) Nothing
+     flcLineStyle (LineDrawStyle (Just LineStyleSolid) Nothing Nothing) (Just (Width 4)) Nothing
      flcSetColor (Color 0xdbd6c700)
      flcLine (Position (X x3) (Y y3)) (Position (X x4) (Y y4))
 
-     flcLineStyle SolidLineStyle (Just 2) Nothing
+     flcLineStyle (LineDrawStyle (Just LineStyleSolid) Nothing Nothing) (Just (Width 2)) Nothing
      flcSetColor (Color 0xdbd6c700)
      flcLine (Position (X x4) (Y y4)) (Position (X x5) (Y y5))
 
